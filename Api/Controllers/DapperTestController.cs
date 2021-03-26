@@ -16,22 +16,20 @@ namespace Api.Controllers
     {
 
         private readonly Database _options;
-        private readonly IConfiguration _configuration;
-
-        public DapperTestController(IConfiguration configuration, IOptionsMonitor<Database> options)
+        public DapperTestController(IOptionsMonitor<Database> options)
         {
-            _configuration = configuration;
             _options = options.CurrentValue;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Sample>>> GetSample()
+        public async Task<ActionResult<List<Customer>>> GetSample()
         {
             using (var db = new SqlConnection(_options.ConnectionStrings))
             {
-                var results = await db.QueryAsync<Sample>("Select * From Customers");
+                var results = await db.QueryAsync<Customer>("Select * From Customers");
                 return results.ToList();
             }
         }
+
     }
 }

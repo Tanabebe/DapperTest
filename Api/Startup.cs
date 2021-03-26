@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace Api
@@ -27,7 +28,6 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<Database>(Configuration.GetSection("Settings:Database"));
-            //services.Configure<SomeConfig>(Configuration.GetSection("SomeConfig"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
